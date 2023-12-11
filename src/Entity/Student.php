@@ -31,6 +31,9 @@ class Student
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $picture = null;
 
+    #[ORM\ManyToOne(inversedBy: 'students')]
+    private ?Crew $crew = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -106,5 +109,22 @@ class Student
         $this->picture = $picture;
 
         return $this;
+    }
+
+    public function getCrew(): ?Crew
+    {
+        return $this->crew;
+    }
+
+    public function setCrew(?Crew $crew): static
+    {
+        $this->crew = $crew;
+
+        return $this;
+    }
+
+    public function getFullName(): string
+    {
+        return $this->firstname . ' ' . $this->lastname;
     }
 }
