@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Crew;
 use App\Entity\Student;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -18,6 +20,10 @@ class StudentType extends AbstractType
             ->add('email')
             ->add('phone')
             ->add('picture')
+            ->add('crew', EntityType::class, [
+                'class' => Crew::class,
+                'choice_label' => 'label',
+            ])
         ;
     }
 
